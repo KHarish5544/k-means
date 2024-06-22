@@ -1,0 +1,22 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+data = pd.read_csv(&quot;D:\\Jeyashri\\IBM\\Datasets\\Country clusters.csv&quot;)
+data
+plt.scatter(data[&#39;Longitude&#39;],data[&#39;Latitude&#39;])
+plt.xlim(-180,180)
+plt.ylim(-90,90)
+plt.xlabel(&quot;Longitude&quot;)
+plt.ylabel(&quot;Latitude&quot;)
+plt.show()
+x = data.iloc[:,1:3]
+x
+kmeans = KMeans(3)
+kmeans.fit(x)
+identified_clusters = kmeans.fit_predict(x)
+identified_clusters
+data_with_clusters = data.copy()
+data_with_clusters[&#39;Clusters&#39;] = identified_clusters
+plt.scatter(data_with_clusters[&#39;Longitude&#39;],data_with_clusters[&#39;Latitude&#39;],c=data
+_with_clusters[&#39;Clusters&#39;],cmap=&#39;rainbow&#39;)
